@@ -1,7 +1,9 @@
 package com.james.purchaselist.domain.partner;
 
-import com.james.purchaselist.domain.BaseLogEntity;
+import com.james.purchaselist.domain.Auditable;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +12,14 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class Partners extends BaseLogEntity<Partners> {
+public class Partners extends Auditable<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String name;
 

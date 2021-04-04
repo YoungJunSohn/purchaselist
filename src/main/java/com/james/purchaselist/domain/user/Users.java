@@ -1,7 +1,10 @@
 package com.james.purchaselist.domain.user;
 
-import com.james.purchaselist.domain.BaseLogEntity;
+import com.james.purchaselist.domain.Auditable;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +13,15 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class Users extends BaseLogEntity<Users> {
+public class Users extends Auditable<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String account;
 
@@ -30,5 +36,6 @@ public class Users extends BaseLogEntity<Users> {
     private LocalDateTime registeredAt; //가입일자
 
     private LocalDateTime unregisteredAt; //해지일자
-    
+
+
 }

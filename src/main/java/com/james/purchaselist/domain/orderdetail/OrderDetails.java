@@ -1,27 +1,34 @@
 package com.james.purchaselist.domain.orderdetail;
 
 
-import com.james.purchaselist.domain.BaseLogEntity;
+import com.james.purchaselist.domain.Auditable;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class OrderDetails extends BaseLogEntity<OrderDetails> {
+public class OrderDetails extends Auditable<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String status; //주문 상태
 
     private LocalDateTime arrivalDate; //도착예정일자
 
-    private int quantity; //주문수량
+    private Long quantity; //주문수량
 
-    @Column(columnDefinition = "decimal", precision = 12, scale = 4)
-    private int totalPrice;
+    private BigDecimal totalPrice;
 
 }

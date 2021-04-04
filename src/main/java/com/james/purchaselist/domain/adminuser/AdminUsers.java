@@ -1,18 +1,25 @@
 package com.james.purchaselist.domain.adminuser;
 
-import com.james.purchaselist.domain.BaseLogEntity;
+import com.james.purchaselist.domain.Auditable;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class AdminUsers extends BaseLogEntity<AdminUsers> {
+public class AdminUsers extends Auditable<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String account;
 
@@ -24,7 +31,7 @@ public class AdminUsers extends BaseLogEntity<AdminUsers> {
 
     private LocalDateTime passwordUpdatedAt;//비밀번호 갱신일자
 
-    private int loginFailCount; //비밀번호 실패 이력
+    private Long loginFailCount; //비밀번호 실패 이력
 
     private LocalDateTime registeredAt; //가입일자
 
