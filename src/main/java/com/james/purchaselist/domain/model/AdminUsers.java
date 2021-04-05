@@ -1,4 +1,4 @@
-package com.james.purchaselist.domain.adminuser;
+package com.james.purchaselist.domain.model;
 
 import com.james.purchaselist.domain.Auditable;
 import lombok.AllArgsConstructor;

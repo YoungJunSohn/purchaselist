@@ -1,18 +1,21 @@
-package com.james.purchaselist.domain.item;
+package com.james.purchaselist.domain.model;
 
 import com.james.purchaselist.domain.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString(exclude = {"orderDetailsList", "partner"})
 public class Items extends Auditable<String> {
 
     @Id
@@ -36,4 +39,9 @@ public class Items extends Auditable<String> {
 
     private LocalDateTime unregisteredAt; //상품 해지일자
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+    private List<OrderDetails> orderDetailsList;
+
+    @ManyToOne
+    private Partners partner;
 }

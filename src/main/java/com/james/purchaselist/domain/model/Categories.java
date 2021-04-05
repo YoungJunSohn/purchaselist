@@ -1,19 +1,19 @@
-package com.james.purchaselist.domain.category;
+package com.james.purchaselist.domain.model;
 
 import com.james.purchaselist.domain.Auditable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString(exclude = {"partnersList"})
 public class Categories extends Auditable<String> {
 
     @Id
@@ -24,4 +24,6 @@ public class Categories extends Auditable<String> {
 
     private String title;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    private List<Partners> partnersList;
 }

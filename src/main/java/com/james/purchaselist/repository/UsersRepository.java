@@ -1,5 +1,6 @@
-package com.james.purchaselist.domain.user;
+package com.james.purchaselist.repository;
 
+import com.james.purchaselist.domain.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
