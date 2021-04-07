@@ -2,7 +2,7 @@ package com.james.purchaselist.repository;
 
 
 import com.james.purchaselist.PurchaseListApplicationTests;
-import com.james.purchaselist.domain.model.Partners;
+import com.james.purchaselist.domain.model.entity.Partners;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

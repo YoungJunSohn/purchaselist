@@ -1,4 +1,4 @@
-package com.james.purchaselist.domain.model;
+package com.james.purchaselist.domain.model.entity;
 
 import com.james.purchaselist.domain.Auditable;
 import lombok.AllArgsConstructor;

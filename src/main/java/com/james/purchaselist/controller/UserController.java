@@ -1,19 +1,44 @@
 package com.james.purchaselist.controller;
 
-import com.james.purchaselist.GlobalResponseDto;
+import com.james.purchaselist.domain.model.network.CrudInterface;
+import com.james.purchaselist.domain.model.network.Header;
+import com.james.purchaselist.domain.model.network.request.UserRequest;
+import com.james.purchaselist.domain.model.network.response.UserResponse;
+import com.james.purchaselist.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(path = "/user")
-public class UserController {
+@RequestMapping(path = "/api/user")
+public class UserController implements CrudInterface<UserRequest, UserResponse> {
 
-//    private final UserService userService;
+    private final UserService userService;
 
-    @PostMapping("/{id}")
-    public GlobalResponseDto create(@RequestParam Long id){
-//        return userService.create(id);
+    @Override
+    @PostMapping("")
+    public Header<UserResponse> create(@RequestBody Header<UserRequest> userRequest) {
+        log.info("{}", userRequest);
+        return userService.create(userRequest);
+    }
+
+    @Override
+    @GetMapping("/{id}")
+    public Header<UserResponse> read(@PathVariable Long id) {
+
+        return userService.read(id);
+    }
+
+    @Override
+    @PutMapping("")
+    public Header<UserResponse> update(@RequestBody Header<UserRequest> userRequest) {
+        return null;
+    }
+
+    @Override
+    public Header<UserResponse> delete(Long id) {
         return null;
     }
 }

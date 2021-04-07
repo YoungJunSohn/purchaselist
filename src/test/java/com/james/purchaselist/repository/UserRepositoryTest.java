@@ -1,6 +1,6 @@
 package com.james.purchaselist.repository;
 
-import com.james.purchaselist.domain.model.Users;
+import com.james.purchaselist.domain.model.entity.Users;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

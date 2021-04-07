@@ -1,10 +1,7 @@
-package com.james.purchaselist.domain.model;
+package com.james.purchaselist.domain.model.entity;
 
 import com.james.purchaselist.domain.Auditable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
