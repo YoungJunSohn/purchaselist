@@ -1,7 +1,5 @@
 package com.james.purchaselist.domain.model.network;
 
-import com.james.purchaselist.domain.model.network.request.UserRequest;
-
 public interface CrudInterface<Req, Res> {
 
     Header<Res> create(Header<Req> request); //todo request object 추가

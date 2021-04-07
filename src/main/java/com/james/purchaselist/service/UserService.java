@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -49,9 +50,31 @@ public class UserService implements CrudInterface<UserRequest, UserResponse> {
     }
 
     @Override
+    @Transactional
     public Header<UserResponse> update(Header<UserRequest> request) {
-        return null;
-    }
+
+        // request 에서 유저 정보 인스턴스화
+        UserRequest userRequest = request.getData();
+
+        // 인스턴스화된 유저정보에서 id로 검색
+        Optional<Users> optional = usersRepository.findById(userRequest.getId());
+
+        return optional.map(user ->{
+            user.setAccount(userRequest.getAccount())
+                    .setEmail(userRequest.getEmail())
+                    .setPassword(userRequest.getPassword())
+                    .setStatus(userRequest.getStatus())
+                    .setPhoneNumber(userRequest.getPhoneNumber())
+                    .setUnregisteredAt(userRequest.getUnregisteredAt())
+                    .setRegisteredAt(userRequest.getRegisteredAt());
+                    return user;
+        })
+                .map(user -> usersRepository.save(user))
+                .map(user -> response(user))
+                .orElseGet(() -> Header.error("해당 유저 없음"));
+
+
+    }//update()
 
     @Override
     public Header<UserResponse> delete(Long id) {

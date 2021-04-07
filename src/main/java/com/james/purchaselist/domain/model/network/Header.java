@@ -1,6 +1,5 @@
 package com.james.purchaselist.domain.model.network;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,8 +25,8 @@ public class Header<V> {
     private V data;
 
     //OK
-    public static <V> Header<V> ok(){
-        return (Header<V>)Header.builder()
+    public static <V> Header<V> ok() {
+        return (Header<V>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .resultCode("OK")
                 .description("OK")
@@ -35,8 +34,8 @@ public class Header<V> {
     }
 
     //Data OK
-    public static <V> Header<V> ok(V data){
-        return (Header<V>)Header.builder()
+    public static <V> Header<V> ok(V data) {
+        return (Header<V>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .resultCode("OK")
                 .description("OK")
@@ -45,7 +44,7 @@ public class Header<V> {
 
 
     //ERROR
-    public static <V> Header<V> error(String description){
+    public static <V> Header<V> error(String description) {
         return (Header<V>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .resultCode("ERROR")
