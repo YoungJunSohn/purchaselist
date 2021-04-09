@@ -1,5 +1,6 @@
 package com.james.purchaselist.domain.model.network.response;
 
+import com.james.purchaselist.domain.enumclass.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,7 @@ public class UserResponse {
 
     private String password;
 
-    private String status;
+    private UserStatus status;
 
     private String email;
 

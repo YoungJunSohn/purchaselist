@@ -1,5 +1,6 @@
 package com.james.purchaselist.service;
 
+import com.james.purchaselist.domain.enumclass.UserStatus;
 import com.james.purchaselist.domain.model.entity.Users;
 import com.james.purchaselist.domain.model.network.CrudInterface;
 import com.james.purchaselist.domain.model.network.Header;
@@ -28,7 +29,7 @@ public class UserService implements CrudInterface<UserRequest, UserResponse> {
         Users user = Users.builder()
                 .account(reqBody.getAccount())
                 .password(reqBody.getPassword())
-                .status("REGISTERED")
+                .status(UserStatus.REGISTERED)
                 .phoneNumber(reqBody.getPhoneNumber())
                 .email(reqBody.getEmail())
                 .registeredAt(LocalDateTime.now())

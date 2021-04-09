@@ -1,6 +1,7 @@
 package com.james.purchaselist.domain.model.entity;
 
 import com.james.purchaselist.domain.Auditable;
+import com.james.purchaselist.domain.enumclass.UserStatus;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -25,7 +26,8 @@ public class Users extends Auditable<String> {
 
     private String password;
 
-    private String status; //회원상태
+    @Enumerated(EnumType.STRING)
+    private UserStatus status; //회원상태
 
     private String email;
 
