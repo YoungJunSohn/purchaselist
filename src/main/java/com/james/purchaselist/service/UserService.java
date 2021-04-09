@@ -36,7 +36,7 @@ public class UserService implements CrudInterface<UserRequest, UserResponse> {
 
         Users newUser = usersRepository.save(user);
 
-        return response(newUser);
+        return toResponse(newUser);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class UserService implements CrudInterface<UserRequest, UserResponse> {
 
         Optional<Users> optionalUsers = usersRepository.findById(id);
 
-        return optionalUsers.map(user -> response(user))
+        return optionalUsers.map(user -> toResponse(user))
                 .orElseGet(() -> Header.error("데이터 없음"));
 
     }
@@ -59,7 +59,7 @@ public class UserService implements CrudInterface<UserRequest, UserResponse> {
         // 인스턴스화된 유저정보에서 id로 검색
         Optional<Users> optional = usersRepository.findById(userRequest.getId());
 
-        return optional.map(user ->{
+        return optional.map(user -> {
             user.setAccount(userRequest.getAccount())
                     .setEmail(userRequest.getEmail())
                     .setPassword(userRequest.getPassword())
@@ -67,22 +67,27 @@ public class UserService implements CrudInterface<UserRequest, UserResponse> {
                     .setPhoneNumber(userRequest.getPhoneNumber())
                     .setUnregisteredAt(userRequest.getUnregisteredAt())
                     .setRegisteredAt(userRequest.getRegisteredAt());
-                    return user;
+            return user;
         })
                 .map(user -> usersRepository.save(user))
-                .map(user -> response(user))
+                .map(user -> toResponse(user))
                 .orElseGet(() -> Header.error("해당 유저 없음"));
 
 
     }//update()
 
     @Override
-    public Header<UserResponse> delete(Long id) {
-        return null;
+    public Header delete(Long id) {
+        return usersRepository.findById(id)
+                .map(user -> {
+                    usersRepository.deleteById(id);
+                    return Header.ok();
+                })
+                .orElseGet(() -> Header.error("해당 유저 없음"));
     }
 
     //response 작성용 메서드
-    private Header<UserResponse> response(Users users) {
+    private Header<UserResponse> toResponse(Users users) {
         UserResponse userResponse = UserResponse.builder()
                 .id(users.getId())
                 .account(users.getAccount())

@@ -2,6 +2,7 @@ package com.james.purchaselist.domain.model.entity;
 
 import com.james.purchaselist.domain.Auditable;
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@Builder
+@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

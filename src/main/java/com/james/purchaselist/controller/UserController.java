@@ -20,26 +20,28 @@ public class UserController implements CrudInterface<UserRequest, UserResponse> 
     @Override
     @PostMapping("")
     public Header<UserResponse> create(@RequestBody Header<UserRequest> userRequest) {
-        log.info("{ UserController : create }", userRequest);
+        log.info("UserController : create /{}", userRequest);
         return userService.create(userRequest);
     }
 
     @Override
     @GetMapping("/{id}")
     public Header<UserResponse> read(@PathVariable Long id) {
-        log.info("{ UserController : read }", id);
+        log.info("UserController : read /{}", id);
         return userService.read(id);
     }
 
     @Override
     @PutMapping("")
     public Header<UserResponse> update(@RequestBody Header<UserRequest> userRequest) {
-        log.info("{ UserController : update }", userRequest);
+        log.info("UserController : update /{}", userRequest);
         return userService.update(userRequest);
     }
 
     @Override
-    public Header<UserResponse> delete(Long id) {
-        return null;
+    @DeleteMapping("/{id}")
+    public Header<UserResponse> delete(@PathVariable Long id) {
+        log.info("UserController : delete /{}", id);
+        return userService.delete(id);
     }
 }
